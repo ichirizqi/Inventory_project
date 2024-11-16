@@ -33,7 +33,9 @@ class BarangController extends Controller
     public function index()
     {
        
-        $barang = Barang::with('kategori')->get();
+        // $barang = Barang::with('kategori')->get();
+        // $barang1 = Barang::with('supplier')->get();
+        $barang = Barang::with(['kategori', 'supplier'])->get();
 
         return view('barang.index', compact('barang'));
     }
@@ -48,13 +50,23 @@ class BarangController extends Controller
     
     public function store(Request $request)
     {
-        $barang = new Barang;
-        $barang->nama = $request->input('nama');
-        $barang->id_kategori = $request->input('id_kategori');
-        $barang->id_supplier = $request->input('id_supplier');
-        $barang->harga = $request->input('harga');
-        $barang->qty = $request->input('qty');
-        $barang->save();
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',         
+            'id_kategori' => 'required|exists:kategoris,id',
+            'id_supplier' => 'required|exists:suppliers,id',
+            'harga' => 'required|numeric',
+            'qty' => 'required|numeric',
+        ]);
+    
+        // Simpan data barang ke database
+        Barang::create([
+            'nama' => $validated['nama'],
+            'id_kategori' => $validated['id_kategori'],
+            'id_supplier' => $validated['id_supplier'],
+            'harga' => $validated['harga'],
+            'qty' => $validated['qty'],
+        ]);
+    
 
         //redirect to index
         return redirect()->route('barang.index')->with('success', 'Produk created successfully.');

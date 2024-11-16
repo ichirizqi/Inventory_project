@@ -94,9 +94,9 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Nama Barang</th>
                         <th>Kategori Barang</th>
                         <th>Supplier</th>
-                        <th>Nama Barang</th>
                         <th>Stok Barang</th>
                         <th>Harga</th>
                         <th>Aksi</th>
@@ -110,9 +110,9 @@
                 @foreach ($barang as $bar)
                     <tr>
                         <td>{{ $counter }}</td>
-                        <td>{{ $bar->id_kategori }}</td>
-                        <td>{{ $bar->id_supplier }}</td>
                         <td>{{ $bar->nama }}</td>
+                        <td>{{ $bar->kategori->nama }}</td>
+                        <td>{{ $bar->supplier->nama }}</td>
                         <td>{{ $bar->qty }}</td>
                         <td>{{ $bar->harga }}</td>
                         

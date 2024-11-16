@@ -110,7 +110,10 @@
                     <select name="id_kategori" class="form-control">
                         <option value=" ">--Pilih--</option>
                         @foreach ($kategoris as $kategori)
-                            <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
+                        <option value="{{ $kategori->id }}" 
+                            {{ old('id_kategori', $barang->id_kategori) == $kategori->id ? 'selected' : '' }}>
+                            {{ $kategori->nama }}
+                        </option>
                         @endforeach
                     </select>
                 </div>
@@ -120,7 +123,10 @@
                     <select name="id_supplier" class="form-control">
                         <option value=" ">--Pilih--</option>
                         @foreach ($supplier as $sup)
-                            <option value="{{ $sup->id }}">{{ $sup->nama }}</option>
+                        <option value="{{ $sup->id }}" 
+                                {{ old('id_supplier', $barang->id_supplier) == $sup->id ? 'selected' : '' }}>
+                            {{ $sup->nama }}
+                        </option>
                         @endforeach
                     </select>
                 </div>
@@ -149,8 +155,6 @@
                   @enderror
                 </div>
             <button type="submit" class="btn btn-md btn-primary">UPDATE</button>
-            <button type="reset" class="btn btn-md btn-warning">RESET</button>
-
         </form> 
     </div>
 </div>

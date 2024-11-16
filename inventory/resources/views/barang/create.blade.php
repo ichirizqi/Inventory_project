@@ -107,9 +107,17 @@
                     <select name="id_kategori" class="form-control">
                         <option value=" ">--Pilih--</option>
                         @foreach ($kategoris as $kategori)
-                            <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
+                        <option value="{{ $kategori->id }}" 
+                            {{ old('id_kategori') == $kategori->id ? 'selected' : '' }}>
+                            {{ $kategori->nama }}
+                        </option>
                         @endforeach
                     </select>
+                    @error('id_kategori')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                     @enderror
                 </div>
 
                 <div class="form-group">
@@ -117,9 +125,17 @@
                     <select name="id_supplier" class="form-control">
                         <option value=" ">--Pilih--</option>
                         @foreach ($supplier as $sup)
-                            <option value="{{ $sup->id }}">{{ $sup->nama }}</option>
+                        <option value="{{ $sup->id }}" 
+                            {{ old('id_supplier') == $sup->id ? 'selected' : '' }}>
+                            {{ $sup->nama }}
+                        </option>
                         @endforeach
                     </select>
+                    @error('id_supplier')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                     @enderror
                 </div>
 
                 <div class="form-group">

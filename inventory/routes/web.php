@@ -20,6 +20,10 @@ use App\Http\Controllers\KategoriController;
 */
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+// Route::get('/register', 'RegisterController@index')->name('register.index');
+// Route::post('/register', 'RegisterController@store')->name('register.store');
 Route::post('/', [LoginController::class, 'check_login'])->name('login.check_login');
 Route::get('/logout', [BarangController::class, 'logout'])->name('barang.logout');
 
